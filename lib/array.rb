@@ -1,21 +1,21 @@
 class SubArray < Array
 
 	def injecting(arg = nil)
-		t = arg || self.first
+		total = arg || self.first
 		
-		arr = if arg
-			self
-		elsif self.first
-			self.slice(1, self.length)
-		end
+		arr = if total == self.first
+						self.slice(1, self.length)
+					elsif total == arg
+						self
+					end
 
 		i = 0
 		while i < arr.length
-			v = arr[i]
-			t = yield t, v
+			element = arr[i]
+			total = yield total, element
 			i += 1
 		end
-		return t
+		return total
 	end
 
 end
