@@ -6,7 +6,12 @@ describe SubArray do
 
 	it "should return a sum of 4 elements in an array" do
 		subarray.concat([1, 2, 3, 4])
-		expect(subarray.injecting(0){|sum, v| sum + v}).to eq(10)
+		expect(subarray.injecting{|sum, v| sum + v}).to eq(10)
+	end
+
+	it "should return a sum of 4 elements in an array and an argument provided" do
+		subarray.concat([1, 2, 3, 4])
+		expect(subarray.injecting(5){|sum, v| sum + v}).to eq(15)
 	end
 
 	it "should return a product of 4 elements in an array" do
@@ -14,7 +19,7 @@ describe SubArray do
 		expect(subarray.injecting{|sum, x| sum * x}).to eq(24)
 	end
 
-	it "playing with words" do 
+	it "should return longest word in the array" do 
 		subarray.concat(["cat", "sheep", "bear"])
 		expect(subarray.injecting{|m, w| m.length > w.length ? m : w}).to eq("sheep")
 	end
