@@ -1,10 +1,17 @@
 class SubArray < Array
 
-	def injecting(arg = self[0])
+	def injecting(arg = nil)
+		t = arg || self.first
+		
+		arr = if arg
+			self
+		elsif self.first
+			self.slice(1, self.length)
+		end
+
 		i = 0
-		t = arg
-		while i < self.length
-			v = self[i]
+		while i < arr.length
+			v = arr[i]
 			t = yield t, v
 			i += 1
 		end
